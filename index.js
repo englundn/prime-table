@@ -1,6 +1,7 @@
 const Table = require('cli-table');
 const prompt = require('prompt');
 
+// Generates the first n primes using the Sieve of Eratosthenes
 const firstNPrimes = (n) => {
   const max = Math.ceil(2 * n * Math.log(n + 1)) + 10;
   const numArray = new Array(max);
@@ -27,6 +28,7 @@ const firstNPrimes = (n) => {
   return primeArray.slice(0, n);
 };
 
+// Populates an array of arrays with the products of the first n primes
 const primeProductMatrix = (n, primeArray) => {
   const nPrimesArray = primeArray || firstNPrimes(n);
   const matrix = new Array(n);
@@ -41,6 +43,8 @@ const primeProductMatrix = (n, primeArray) => {
   return matrix;
 };
 
+// Uses cli-table module to make a well-formatted table.
+// Log table to console using console.log(primeTable.toString())
 const makePrimeTable = (n) => {
   const nPrimesArray = firstNPrimes(n);
   const nPrimesMatrix = primeProductMatrix(n, nPrimesArray);
@@ -48,12 +52,12 @@ const makePrimeTable = (n) => {
   for (let i = 0; i < n; i += 1) {
     const newRow = {};
     newRow[nPrimesArray[i]] = nPrimesMatrix[i];
-    // const rowHeader = nPrimesArray[i];
     primeTable.push(newRow);
   }
   return primeTable;
 };
 
+// Prompt user for value of n and display table
 prompt.start();
 prompt.get(['n'], (err, result) => {
   if (err) console.error(err);
