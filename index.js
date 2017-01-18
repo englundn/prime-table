@@ -24,4 +24,18 @@ const firstNPrimes = (n) => {
   return primeArray.slice(0, n);
 };
 
-module.exports = firstNPrimes;
+const primeProductMatrix = (n) => {
+  const nPrimesArray = firstNPrimes(n);
+  const matrix = new Array(n);
+  for (let i = 0; i < n; i += 1) {
+    matrix[i] = new Array(n);
+  }
+  for (let i = 0; i < n; i += 1) {
+    for (let j = 0; j <= i; j += 1) {
+      matrix[i][j] = matrix[j][i] = nPrimesArray[i] * nPrimesArray[j];
+    }
+  }
+  return matrix;
+};
+
+module.exports = { firstNPrimes, primeProductMatrix };
