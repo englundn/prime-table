@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const { firstNPrimes, primeProductMatrix } = require('../index.js');
+const { firstNPrimes, primeProductMatrix, makePrimeTable, Table } = require('../index.js');
 
 describe('firstNPrimes', () => {
   it('should return an array', () => {
@@ -42,5 +42,20 @@ describe('primeProductMatrix', () => {
       [38, 57, 95, 133, 209, 247, 323, 361, 437, 551],
       [46, 69, 115, 161, 253, 299, 391, 437, 529, 667],
       [58, 87, 145, 203, 319, 377, 493, 551, 667, 841]]);
+  });
+});
+
+describe('makePrimeTable', () => {
+  const primeTable1 = makePrimeTable(1);
+  const primeTable10 = makePrimeTable(10);
+  it('should return a cli-table', () => {
+    expect(primeTable1 instanceof Table).to.equal(true);
+    expect(primeTable10 instanceof Table).to.equal(true);
+  });
+  it('should have the appropriate contents', () => {
+    expect(primeTable1.length).to.equal(1);
+    expect(primeTable10.length).to.equal(10);
+    expect(primeTable1.options.head).to.eql(['', 2]);
+    expect(primeTable10.options.head).to.eql(['', 2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
   });
 });

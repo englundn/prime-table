@@ -1,3 +1,5 @@
+const Table = require('cli-table');
+
 const firstNPrimes = (n) => {
   const max = Math.ceil(2 * n * Math.log(n + 1)) + 10;
   const numArray = new Array(max);
@@ -24,8 +26,8 @@ const firstNPrimes = (n) => {
   return primeArray.slice(0, n);
 };
 
-const primeProductMatrix = (n) => {
-  const nPrimesArray = firstNPrimes(n);
+const primeProductMatrix = (n, primeArray) => {
+  const nPrimesArray = primeArray || firstNPrimes(n);
   const matrix = new Array(n);
   for (let i = 0; i < n; i += 1) {
     matrix[i] = new Array(n);
@@ -38,4 +40,17 @@ const primeProductMatrix = (n) => {
   return matrix;
 };
 
-module.exports = { firstNPrimes, primeProductMatrix };
+const makePrimeTable = (n) => {
+  const nPrimesArray = firstNPrimes(n);
+  const nPrimesMatrix = primeProductMatrix(n, nPrimesArray);
+  const primeTable = new Table({ head: [''].concat(nPrimesArray) });
+  for (let i = 0; i < n; i += 1) {
+    const newRow = {};
+    newRow[nPrimesArray[i]] = nPrimesMatrix[i];
+    // const rowHeader = nPrimesArray[i];
+    primeTable.push(newRow);
+  }
+  return primeTable;
+};
+
+module.exports = { firstNPrimes, primeProductMatrix, makePrimeTable, Table };
