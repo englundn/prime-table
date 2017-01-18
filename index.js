@@ -61,8 +61,8 @@ const makePrimeTable = (n) => {
 prompt.start();
 prompt.get(['n'], (err, result) => {
   if (err) console.error(err);
-  const n = Number(result.n);
-  isNaN(n) ? console.log('Please enter a valid number.') : console.log(makePrimeTable(n).toString());
+  const n = Number(result.n) || 10;
+  console.log(makePrimeTable(n).toString());
 });
 
 module.exports = { firstNPrimes, primeProductMatrix, makePrimeTable, Table };

@@ -15,4 +15,4 @@ npm test
 ```bash    
 npm start
 ```
-- Type the value of n you want and press Enter. 
+- Type the value of n you want and press Enter. The default value is 10.
