@@ -4,6 +4,7 @@
   "description": "Prints out a multiplication table of first n primes",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha"
   },
   "repository": {
@@ -19,6 +20,7 @@
   "dependencies": {
     "chai": "^3.5.0",
     "cli-table": "^0.3.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "prompt": "^1.0.0"
   }
 }

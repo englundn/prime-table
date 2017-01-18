@@ -1,4 +1,5 @@
 const Table = require('cli-table');
+const prompt = require('prompt');
 
 const firstNPrimes = (n) => {
   const max = Math.ceil(2 * n * Math.log(n + 1)) + 10;
@@ -52,5 +53,12 @@ const makePrimeTable = (n) => {
   }
   return primeTable;
 };
+
+prompt.start();
+prompt.get(['n'], (err, result) => {
+  if (err) console.error(err);
+  const n = Number(result.n);
+  isNaN(n) ? console.log('Please enter a valid number.') : console.log(makePrimeTable(n).toString());
+});
 
 module.exports = { firstNPrimes, primeProductMatrix, makePrimeTable, Table };
